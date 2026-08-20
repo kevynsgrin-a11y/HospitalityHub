@@ -1,0 +1,25 @@
+{
+  "markets": [
+    { "slug": "san-diego", "tier": "test", "state": "ca", "cities": ["san diego"] },
+    { "slug": "los-angeles", "tier": "launch", "state": "ca", "cities": ["los angeles"] },
+    { "slug": "sf-bay-area", "tier": "launch", "state": "ca", "cities": ["san francisco", "oakland", "san jose"] },
+    { "slug": "sacramento", "tier": "launch", "state": "ca", "cities": ["sacramento"] },
+    { "slug": "las-vegas", "tier": "launch", "state": "nv", "cities": ["las vegas"] },
+    { "slug": "new-york-city", "tier": "launch", "state": "ny", "cities": ["new york"] },
+    { "slug": "miami", "tier": "launch", "state": "fl", "cities": ["miami"] },
+    { "slug": "seattle", "tier": "launch", "state": "wa", "cities": ["seattle"] },
+    { "slug": "nashville", "tier": "launch", "state": "tn", "cities": ["nashville"] }
+  ],
+  "statewide": { "slug": "california-statewide", "tier": "measurement_only", "state": "ca" },
+  "techmap": {
+    "baseUrl": "https://daily-international-job-postings.p.rapidapi.com",
+    "host": "daily-international-job-postings.p.rapidapi.com",
+    "fohTitleQuery": "server OR bartender OR waiter OR waitress",
+    "maxSearchPagesPerMarket": 10
+  },
+  "fantastic": {
+    "baseUrl": "https://api.fantastic.jobs/active-ats-7d",
+    "enabled": false,
+    "markets": ["san-diego"]
+  }
+}
