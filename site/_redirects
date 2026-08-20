@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. Never .htaccess.
+# The Batch 5 generator appends one line per expired listing so the route returns 410 Gone
+# and disappears from the sitemap, e.g.:
+#   /jobs/01JEXAMPLEULID/ /410.html 410

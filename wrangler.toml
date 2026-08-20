@@ -1,0 +1,28 @@
+# HospitalityHub ingest/edge worker.
+# Deployment is operator-owned: no routes, domains, or DNS configured here.
+
+name = "hospitalityhub-worker"
+main = "worker/src/index.ts"
+compatibility_date = "2025-08-01"
+
+# Daily ingest cycle. The concrete schedule is also mirrored in KV (key: ingest_schedule)
+# so it can be tuned without a deploy; the cron trigger is the outer bound.
+[triggers]
+crons = ["0 10 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hospitalityhub"
+database_id = "REPLACE_WITH_OPERATOR_PROVISIONED_ID"
+
+[[kv_namespaces]]
+binding = "CONFIG"
+id = "REPLACE_WITH_OPERATOR_PROVISIONED_ID"
+
+[[r2_buckets]]
+binding = "RAW"
+bucket_name = "hospitalityhub-raw"
+
+# Secrets (set via `wrangler secret put`, never committed):
+#   TECHMAP_API_KEY, FANTASTIC_JOBS_API_KEY
+# Local dev: copy .dev.vars.example to .dev.vars (gitignored).
