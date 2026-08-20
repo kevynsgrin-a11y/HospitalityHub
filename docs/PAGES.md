@@ -39,7 +39,10 @@ Generator rules baked into the contracts:
 | `worker/src/lib/normalize.ts` | `normalize(input)`, `canonicalKey(employer, title, metroSlug)`, `applyUrlHost(applyUrl)` | ingest (Batch 2), dedup |
 | `worker/src/lib/dedup.ts` | `resolveCollision(existing, incoming): CollisionResult` (`winner`, `loser`, `distinct`) | ingest upsert path |
 | `worker/src/lib/ulid.ts` | `ulid(now?)` | job id generation |
-| `worker/src/index.ts` | `fetch` (health/API scaffold), `scheduled` (daily cron `0 10 * * *`, will drive Batch 2 ingest) | Cloudflare runtime |
+| `worker/src/index.ts` | `fetch` (health/API scaffold), `scheduled` (daily cron `0 10 * * *`, runs the Layer A ingest; KV-configurable) | Cloudflare runtime |
+| `worker/src/ingest/techmap.ts` | `TechmapClient` (`count`, `searchPage`; retries/backoff, injectable `HttpGet`), `parseSearchPayload(rawText)` | Layer A ingest |
+| `worker/src/ingest/mapper.ts` | `mapTechmapJob(raw): { fields, unmappedKeys }` — vendor → canonical, NULL for absent fields | Layer A ingest |
+| `worker/src/ingest/run.ts` | `runTechmapIngest(env, client, cfg)`, `ingestArchivedPayload(env, rawText, ctx)` (re-run from R2 archive), `rawArchiveKey(...)` | scheduled handler |
 
 Bindings (`wrangler.toml`): `DB` (D1 `hospitalityhub`), `CONFIG` (KV: feature flags, `ingest_schedule`),
 `RAW` (R2: raw payload archive). Secrets via Wrangler: `TECHMAP_API_KEY`, `FANTASTIC_JOBS_API_KEY`
@@ -59,6 +62,6 @@ vendor APIs / permitted crawls (Batch 2-3)
 
 ## Not yet implemented (by design)
 
-Ingest pipeline (Batch 2), crawler (Batch 3), classifier + eval set (Batch 4), static generator,
+Crawler (Batch 3), classifier + eval set (Batch 4), static generator,
 sitemap/robots.txt generation and JSON-LD emission (Batch 5), multi-market ops (Batch 6). The
 templates and interfaces above are the contracts those batches fill in.
