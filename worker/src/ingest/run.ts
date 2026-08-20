@@ -94,7 +94,12 @@ export async function runTechmapIngest(
             dateCreated: cfg.day,
           };
           const total = await client.count(query);
-          const pages = Math.min(cfg.maxPagesPerCity, Math.ceil((total ?? 0) / 10));
+          // Unknown count (null) is not zero: fall back to paging until an empty page,
+          // bounded by maxPagesPerCity, rather than silently skipping the city.
+          const pages =
+            total === null
+              ? cfg.maxPagesPerCity
+              : Math.min(cfg.maxPagesPerCity, Math.ceil(total / 10));
           for (let page = 1; page <= pages; page++) {
             const result = await client.searchPage(query, page);
             if (result.jobs.length === 0) break;

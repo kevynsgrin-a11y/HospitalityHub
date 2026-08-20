@@ -134,6 +134,21 @@ describe('full San Diego run', () => {
   });
 });
 
+describe('unknown count response', () => {
+  it('still fetches pages (until empty) when the count total is unreadable', async () => {
+    const { env, d1 } = makeFakeEnv();
+    const base = fixtureHttp().httpGet;
+    const httpGet: HttpGet = async (url, headers) => {
+      if (new URL(url).pathname.endsWith('/jobs/count')) return { status: 200, text: '{"unexpected":true}' };
+      return base(url, headers);
+    };
+    const summary = await runTechmapIngest(env, makeClient(httpGet), CFG);
+    expect(summary.ok).toBe(true);
+    expect(summary.recordsSeen).toBe(13);
+    expect((d1.db.prepare('SELECT COUNT(*) AS n FROM jobs').get() as { n: number }).n).toBe(12);
+  });
+});
+
 describe('retries and rate limits', () => {
   it('retries 429 responses with backoff and succeeds', async () => {
     const { env } = makeFakeEnv();
