@@ -86,6 +86,7 @@ async function probeMarket(market) {
     restaurantBar: 0,
     uniqueEmployers: 0,
     dupesVsPriorDays: 0,
+    sameDayRepeats: 0,
     newKeys: 0,
     portals: {},
     errors: [],
@@ -120,9 +121,13 @@ async function probeMarket(market) {
           if (j.company) employers.add(j.company.toLowerCase().trim());
           if (j.portal) out.portals[j.portal] = (out.portals[j.portal] ?? 0) + 1;
           const key = canonicalKey(j.company, j.title, market.slug);
-          if (keys[key]) {
-            out.dupesVsPriorDays += 1;
-            keys[key].lastSeen = day;
+          const existing = keys[key];
+          if (existing) {
+            // Only keys first seen on an earlier day count as day-over-day overlap;
+            // repeats within the same run/day are tracked separately.
+            if (existing.firstSeen < day) out.dupesVsPriorDays += 1;
+            else out.sameDayRepeats += 1;
+            existing.lastSeen = day;
           } else {
             out.newKeys += 1;
             keys[key] = { firstSeen: day, lastSeen: day, portal: j.portal };
@@ -177,7 +182,7 @@ async function main() {
   if (!fs.existsSync(csvPath)) {
     fs.writeFileSync(
       csvPath,
-      'day,market,tier,total,foh_title_count,fetched,server,bartender,foh_other,restaurant_bar,unique_employers,dupes_vs_prior,new_keys,errors\n'
+      'day,market,tier,total,foh_title_count,fetched,server,bartender,foh_other,restaurant_bar,unique_employers,dupes_vs_prior,same_day_repeats,new_keys,errors\n'
     );
   }
   for (const m of results) {
@@ -186,7 +191,7 @@ async function main() {
       [
         day, m.slug, m.tier, m.total ?? '', m.fohTitleCount ?? '', m.fetched ?? '',
         m.server ?? '', m.bartender ?? '', m.fohOther ?? '', m.restaurantBar ?? '',
-        m.uniqueEmployers ?? '', m.dupesVsPriorDays ?? '', m.newKeys ?? '',
+        m.uniqueEmployers ?? '', m.dupesVsPriorDays ?? '', m.sameDayRepeats ?? '', m.newKeys ?? '',
         (m.errors ?? []).length,
       ].join(',') + '\n'
     );
