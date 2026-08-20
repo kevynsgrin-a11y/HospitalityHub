@@ -1,0 +1,148 @@
+/* HospitalityHub — mobile-first, no layout shift, WCAG AA contrast.
+   Audience: phone use between shifts, legible at arm's length in bad light. */
+
+:root {
+  --bg: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #444444;
+  --accent: #0a5c36;
+  --accent-ink: #ffffff;
+  --line: #d9d9d9;
+  --chip-bg: #eef4f0;
+  --max-w: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 106.25%; } /* 17px base for arm's-length legibility */
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+header.site {
+  border-bottom: 1px solid var(--line);
+}
+header.site .inner,
+main, footer.site .inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+}
+header.site .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+header.site .brand svg { flex: none; }
+
+main { padding-top: 1rem; padding-bottom: 3rem; }
+
+h1 { font-size: 1.5rem; line-height: 1.25; margin: 0.5rem 0 0.75rem; }
+h2 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0.25rem 0 0;
+}
+.crumbs a { color: var(--ink-soft); }
+
+ul.job-list { list-style: none; margin: 0; padding: 0; }
+ul.job-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 0 0 0.75rem;
+}
+ul.job-list a.card {
+  display: block;
+  padding: 0.85rem 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 44px;
+}
+.card .title { font-weight: 700; color: var(--accent); }
+.card .meta { color: var(--ink-soft); font-size: 0.9rem; margin-top: 0.15rem; }
+
+.chip {
+  display: inline-block;
+  background: var(--chip-bg);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 0.35rem;
+}
+
+dl.facts { margin: 1rem 0; }
+dl.facts div {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+}
+dl.facts dt { flex: 0 0 8.5rem; color: var(--ink-soft); margin: 0; }
+dl.facts dd { margin: 0; }
+
+.apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.4rem;
+  margin: 1rem 0;
+  min-height: 44px;
+}
+.apply svg { flex: none; }
+
+.source-note { font-size: 0.85rem; color: var(--ink-soft); }
+
+.role-links { display: grid; gap: 0.75rem; grid-template-columns: 1fr; margin: 1rem 0; }
+@media (min-width: 30rem) { .role-links { grid-template-columns: 1fr 1fr; } }
+.role-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 44px;
+}
+
+footer.site {
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
