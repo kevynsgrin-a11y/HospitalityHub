@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- Template: /[metro]/ — metro index. Rendered by the Batch 5 generator on each daily ingest cycle.
+     Tokens: {{METRO_NAME}} {{METRO_SLUG}} {{STATE}} {{ACTIVE_COUNT}} {{ROBOTS_META}} -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{METRO_NAME}} Restaurant and Bar Jobs — HospitalityHub</title>
+<meta name="description" content="Server and bartender jobs at restaurants and bars in {{METRO_NAME}}, {{STATE}}. Refreshed daily.">
+{{ROBOTS_META}}<!-- "noindex, follow" unless: >=12 active listings AND >=30% first seen in last 7 days -->
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site">
+  <div class="inner">
+    <a class="brand" href="/">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 21h8"/><path d="M12 15v6"/><path d="M5 3h14l-5.5 7.5a2 2 0 0 1-3 0Z"/></svg>
+      HospitalityHub
+    </a>
+  </div>
+</header>
+<main id="main">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / {{METRO_NAME}}</nav>
+  <h1>{{METRO_NAME}} restaurant and bar jobs</h1>
+  <p>{{ACTIVE_COUNT}} active listings, refreshed daily.</p>
+  <div class="role-links">
+    <a href="/{{METRO_SLUG}}/servers/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M3 12h18"/></svg>
+      Server jobs
+    </a>
+    <a href="/{{METRO_SLUG}}/bartenders/">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 3h14l-5.5 7.5a2 2 0 0 1-3 0Z"/><path d="M12 15v6M8 21h8"/></svg>
+      Bartender jobs
+    </a>
+  </div>
+</main>
+<footer class="site">
+  <div class="inner"><p>Apply links go to the original source.</p></div>
+</footer>
+</body>
+</html>

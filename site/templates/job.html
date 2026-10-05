@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Template: /jobs/[id]/ — listing detail page.
+     Tokens: {{TITLE}} {{EMPLOYER}} {{VENUE_TYPE}} {{LOCATION}} {{DATE_POSTED}}
+             {{APPLY_URL}} {{SOURCE_NAME}} {{JSONLD}} {{FACT_ROWS}} {{DESCRIPTION_HTML}}
+     Rules enforced by the generator, not this template:
+       - NULL fields are omitted entirely from {{FACT_ROWS}} (never rendered as empty/placeholder).
+       - Compensation appears if and only if the source supplied it.
+       - {{JSONLD}} is the JobPosting JSON-LD block (Batch 5; see docs/SEO.md for compliance).
+       - Expired listings are never rendered: the route 410s via _redirects and leaves the sitemap. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — {{EMPLOYER}} — HospitalityHub</title>
+<meta name="description" content="{{TITLE}} at {{EMPLOYER}}, {{LOCATION}}. Apply directly at the source.">
+{{JSONLD}}
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site">
+  <div class="inner">
+    <a class="brand" href="/">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 21h8"/><path d="M12 15v6"/><path d="M5 3h14l-5.5 7.5a2 2 0 0 1-3 0Z"/></svg>
+      HospitalityHub
+    </a>
+  </div>
+</header>
+<main id="main">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / {{LOCATION}}</nav>
+  <h1>{{TITLE}}</h1>
+  <p><span class="chip">{{VENUE_TYPE}}</span></p>
+
+  <dl class="facts">
+    {{FACT_ROWS}}
+    <!-- Each supplied field renders as:
+         <div><dt>Employer</dt><dd>{employer_raw}</dd></div>
+         <div><dt>Location</dt><dd>{city}, {state}</dd></div>
+         <div><dt>Pay</dt><dd>{compensation}</dd></div>           <- only when source supplied it
+         <div><dt>Posted</dt><dd>{date_posted}</dd></div> -->
+  </dl>
+
+  <a class="apply" href="{{APPLY_URL}}" rel="noopener nofollow external">
+    Apply at {{SOURCE_NAME}}
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+  </a>
+  <p class="source-note">This listing was found at {{SOURCE_NAME}}. Applications happen on the original site — we never intercept or re-host the application flow.</p>
+
+  <section aria-label="Job description">
+    {{DESCRIPTION_HTML}}
+  </section>
+</main>
+<footer class="site">
+  <div class="inner"><p>Apply links go to the original source.</p></div>
+</footer>
+</body>
+</html>

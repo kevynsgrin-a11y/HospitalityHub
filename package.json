@@ -1,0 +1,19 @@
+{
+  "name": "hospitalityhub",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:migrate:local": "wrangler d1 migrations apply hospitalityhub --local",
+    "db:seed:local": "wrangler d1 execute hospitalityhub --local --file seeds/metros.sql",
+    "dev:worker": "wrangler dev"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.9",
+    "wrangler": "^4.20.0"
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Template: /[metro]/servers/ and /[metro]/bartenders/ — role listing page.
+     Tokens: {{METRO_NAME}} {{METRO_SLUG}} {{ROLE_LABEL}} {{ROLE_SLUG}} {{ROBOTS_META}} {{JOB_CARDS}}
+     {{JOB_CARDS}} expands to one <li> per active, publishable listing:
+       <li><a class="card" href="/jobs/{id}/">
+         <span class="title">{title_raw}</span>
+         <span class="meta">{employer_raw} - {city}[ - {compensation}]</span>  <- compensation omitted when NULL
+       </a></li> -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ROLE_LABEL}} Jobs in {{METRO_NAME}} — HospitalityHub</title>
+<meta name="description" content="{{ROLE_LABEL}} jobs at restaurants and bars in {{METRO_NAME}}. Refreshed daily, with direct application links.">
+{{ROBOTS_META}}
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site">
+  <div class="inner">
+    <a class="brand" href="/">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 21h8"/><path d="M12 15v6"/><path d="M5 3h14l-5.5 7.5a2 2 0 0 1-3 0Z"/></svg>
+      HospitalityHub
+    </a>
+  </div>
+</header>
+<main id="main">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/{{METRO_SLUG}}/">{{METRO_NAME}}</a> / {{ROLE_LABEL}}s</nav>
+  <h1>{{ROLE_LABEL}} jobs in {{METRO_NAME}}</h1>
+  <ul class="job-list">
+    {{JOB_CARDS}}
+  </ul>
+</main>
+<footer class="site">
+  <div class="inner"><p>Apply links go to the original source.</p></div>
+</footer>
+</body>
+</html>
