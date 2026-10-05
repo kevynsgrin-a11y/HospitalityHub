@@ -1,0 +1,47 @@
+{
+  "totalCount": 13,
+  "result": [
+    {
+      "title": "Server",
+      "company": "Harbor House Restaurant LLC",
+      "city": "San Diego",
+      "state": "ca",
+      "postalCode": "92100",
+      "portal": "indeed",
+      "dateCreated": "2026-08-18",
+      "url": "https://careers.harborhouse-lajolla.com/posting/77",
+      "description": "Front of house position 0 at a busy venue in downtown San Diego.",
+      "workType": "Part-Time",
+      "occupation": "Waiters and Waitresses",
+      "language": "en"
+    },
+    {
+      "title": "Bartender",
+      "company": "The Copper Room",
+      "city": "San Diego",
+      "state": "ca",
+      "postalCode": "92101",
+      "portal": "jooble",
+      "dateCreated": "2026-08-18",
+      "url": null,
+      "description": "Front of house position 11 at a busy venue in downtown San Diego.",
+      "workType": "Full-Time",
+      "occupation": "Waiters and Waitresses",
+      "language": "en"
+    },
+    {
+      "title": "Bartender",
+      "company": "Sunset Cantina, Inc.",
+      "city": "San Diego",
+      "state": "ca",
+      "postalCode": "92102",
+      "portal": "indeed",
+      "dateCreated": "2026-08-18",
+      "url": "https://jobs.example12.com/posting/1012",
+      "description": "Front of house position 12 at a busy venue in downtown San Diego.",
+      "workType": "Part-Time",
+      "occupation": "Waiters and Waitresses",
+      "language": "en"
+    }
+  ]
+}
